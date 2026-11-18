@@ -368,8 +368,8 @@
             </div>
         </div>
         <div class="hero-photo-wrap">
-            <!-- 5-е присланное фото: донер на гриле крупным планом -->
-            <img src="images/hero.jpg" alt="Фирменный донер на гриле">
+            <!-- Автоматически пробует images/hero.jpg, images/hero.png, images/hero.jpeg или из корня -->
+            <img src="images/hero.jpg" data-base="hero" onerror="fixImgExt(this)" alt="Фирменный донер на гриле">
         </div>
     </div>
 </section>
@@ -393,9 +393,8 @@
         <p class="section-subtitle">Добавьте позиции в предзаказ, чтобы забрать без очереди</p>
 
         <div class="menu-grid">
-            <!-- Карточка 1 (4-е присланное фото: шаурма в бумаге на светлой плитке) -->
             <div class="menu-card">
-                <img src="images/classic.jpg" alt="Классический донер с курицей">
+                <img src="images/classic.jpg" data-base="classic" onerror="fixImgExt(this)" alt="Классический донер с курицей">
                 <div class="menu-body">
                     <div>
                         <div class="menu-top">
@@ -411,9 +410,8 @@
                 </div>
             </div>
 
-            <!-- Карточка 2 (1-е присланное фото: гирос-донер в пите с фри и красным луком) -->
             <div class="menu-card">
-                <img src="images/gyros.jpg" alt="Гирос-донер в пите с фри">
+                <img src="images/gyros.jpg" data-base="gyros" onerror="fixImgExt(this)" alt="Гирос-донер в пите с фри">
                 <div class="menu-body">
                     <div>
                         <div class="menu-top">
@@ -429,9 +427,8 @@
                 </div>
             </div>
 
-            <!-- Карточка 3 (3-е присланное фото: ролл-донер на деревянной доске) -->
             <div class="menu-card">
-                <img src="images/wrap.jpg" alt="Фирменный ролл-донер">
+                <img src="images/wrap.jpg" data-base="wrap" onerror="fixImgExt(this)" alt="Фирменный ролл-донер">
                 <div class="menu-body">
                     <div>
                         <div class="menu-top">
@@ -447,9 +444,8 @@
                 </div>
             </div>
 
-            <!-- Карточка 4 (7-е присланное фото: большой донер на тарелке на темном фоне) -->
             <div class="menu-card">
-                <img src="images/plate.jpg" alt="Большой донер на тарелке">
+                <img src="images/plate.jpg" data-base="plate" onerror="fixImgExt(this)" alt="Большой донер на тарелке">
                 <div class="menu-body">
                     <div>
                         <div class="menu-top">
@@ -465,9 +461,8 @@
                 </div>
             </div>
 
-            <!-- Карточка 5 (6-е присланное фото: мясо на углях на доске с фри) -->
             <div class="menu-card">
-                <img src="images/grill_board.jpg" alt="Мясо на углях с картофелем фри">
+                <img src="images/grill_board.jpg" data-base="grill_board" onerror="fixImgExt(this)" alt="Мясо на углях с картофелем фри">
                 <div class="menu-body">
                     <div>
                         <div class="menu-top">
@@ -483,9 +478,8 @@
                 </div>
             </div>
 
-            <!-- Карточка 6 (2-е присланное фото: бургер с картофелем фри) -->
             <div class="menu-card">
-                <img src="images/burger_combo.jpg" alt="Комбо Бургер + Картофель фри">
+                <img src="images/burger_combo.jpg" data-base="burger_combo" onerror="fixImgExt(this)" alt="Комбо Бургер + Картофель фри">
                 <div class="menu-body">
                     <div>
                         <div class="menu-top">
@@ -632,12 +626,35 @@
     </div>
 </div>
 
+<!-- Плашка Cookie: удаляется полностью из DOM при нажатии -->
 <div class="cookie-banner" id="cookieBar">
     <span>Мы используем файлы cookie для корректной работы сайта.</span>
-    <button type="button" class="btn btn-primary" style="padding: 7px 14px; font-size: 0.8rem;" onclick="closeCookie()">Принять</button>
+    <button type="button" class="btn btn-primary" style="padding: 7px 14px; font-size: 0.8rem;" onclick="var b=document.getElementById('cookieBar');if(b)b.remove();try{localStorage.setItem('doner_ck_ok','1');}catch(e){}">Принять</button>
 </div>
 
 <script>
+    // Автоматический подбор расширения (.jpg, .png, .jpeg, .webp) и папки (images/ или корень)
+    function fixImgExt(img) {
+        var base = img.getAttribute('data-base');
+        var step = parseInt(img.getAttribute('data-step') || '0', 10);
+        var variants = [
+            'images/' + base + '.png',
+            'images/' + base + '.jpeg',
+            'images/' + base + '.JPG',
+            'images/' + base + '.PNG',
+            'images/' + base + '.webp',
+            base + '.jpg',
+            base + '.png',
+            base + '.jpeg'
+        ];
+        if (step < variants.length) {
+            img.setAttribute('data-step', step + 1);
+            img.src = variants[step];
+        } else {
+            img.onerror = null;
+        }
+    }
+
     var cart = {};
 
     function addToCart(name, price) {
@@ -726,20 +743,10 @@
     function closeModal(id) { document.getElementById(id).classList.remove('active'); }
     function closeModalOnBg(e, id) { if (e.target.id === id) closeModal(id); }
 
-    function closeCookie() {
-        var bar = document.getElementById('cookieBar');
-        if (bar) {
-            bar.style.setProperty('display', 'none', 'important');
-        }
-        try {
-            localStorage.setItem('doner_ck_ok', '1');
-        } catch (e) {}
-    }
-
     try {
         if (localStorage.getItem('doner_ck_ok') === '1') {
-            var bar = document.getElementById('cookieBar');
-            if (bar) bar.style.setProperty('display', 'none', 'important');
+            var b = document.getElementById('cookieBar');
+            if (b) b.remove();
         }
     } catch (e) {}
 </script>
