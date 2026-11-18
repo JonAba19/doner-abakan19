@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ТОЧКА ДОНЕРА 24/7 — Настоящий гриль в Абакане</title>
+    <style>
+        :root {
+            --bg-dark: #111113;
+            --bg-surface: #1A1A1E;
+            --bg-elevated: #242429;
+            --accent-fire: #FF4D1C;
+            --accent-fire-hover: #E03A0B;
+            --accent-yellow: #FFD23F;
+            --accent-green: #22C55E;
+            --text-white: #F8F8FA;
+            --text-silver: #A1A1AA;
+            --border-subtle: #2E2E34;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.55;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Ticker */
+        .marquee-bar {
+            background-color: var(--accent-yellow);
+            color: #111113;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 8px 16px;
+            text-align: center;
+        }
+
+        /* Navbar */
+        header {
+            background-color: rgba(17, 17, 19, 0.92);
+            border-bottom: 1px solid var(--border-subtle);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            gap: 15px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-white);
+            font-weight: 900;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-badge {
+            background-color: var(--accent-fire);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+
+        .nav-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 0.9rem;
+            color: var(--text-silver);
+        }
+
+        .live-dot {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent-green);
+            font-weight: 700;
+        }
+
+        .live-dot::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-green);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 13px 24px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.18s ease, background-color 0.18s ease;
+            font-family: inherit;
+        }
+
+        .btn-fire {
+            background-color: var(--accent-fire);
+            color: #FFFFFF;
+        }
+
+        .btn-fire:hover:not(:disabled) {
+            background-color: var(--accent-fire-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-fire:disabled {
+            background-color: #3F3F46;
+            color: #71717A;
+            cursor: not-allowed;
+        }
+
+        .btn-ghost {
+            background-color: var(--bg-elevated);
+            color: var(--text-white);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--accent-yellow);
+            color: var(--accent-yellow);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 55px 0 65px;
+        }
+
+        .hero-wrap {
+            display: grid;
+            grid-template-columns: 1.08fr 0.92fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .rating-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            padding: 7px 14px;
+            border-radius: 10px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .rating-chip span {
+            color: var(--accent-yellow);
+        }
+
+        .hero h1 {
+            font-size: 3.1rem;
+            font-weight: 900;
+            line-height: 1.08;
+            letter-spacing: -1px;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: var(--accent-fire);
+        }
+
+        .hero-lead {
+            font-size: 1.08rem;
+            color: var(--text-silver);
+            margin-bottom: 28px;
+            max-width: 540px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .hero-media {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 2px solid var(--border-subtle);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.65);
+            aspect-ratio: 4 / 3;
+            background-color: #1A1A1E;
+        }
+
+        .hero-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-caption {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            right: 16px;
+            background: rgba(17, 17, 19, 0.88);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-subtle);
+            padding: 12px 16px;
+            border-radius: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.88rem;
+        }
+
+        /* Promo Card */
+        .promo-box {
+            background: linear-gradient(135deg, #231915, #1A1A1E);
+            border: 1px solid rgba(255, 77, 28, 0.45);
+            border-radius: 20px;
+            padding: 26px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 65px;
+        }
+
+        .promo-box h2 {
+            font-size: 1.45rem;
+            font-weight: 900;
+            margin-bottom: 4px;
+        }
+
+        .promo-box p {
+            color: var(--text-silver);
+            font-size: 0.92rem;
+        }
+
+        .code-pill {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--bg-dark);
+            border: 1px dashed var(--accent-yellow);
+            padding: 8px 10px 8px 18px;
+            border-radius: 12px;
+        }
+
+        .code-pill strong {
+            font-size: 1.25rem;
+            color: var(--accent-yellow);
+            letter-spacing: 1px;
+        }
+
+        /* Menu Grid */
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 32px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .section-head h2 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .section-head p {
+            color: var(--text-silver);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 26px;
+            margin-bottom: 75px;
+        }
+
+        .product-card {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-fire);
+        }
+
+        .product-img-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            background-color: #141416;
+        }
+
+        .product-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.35s ease;
+        }
+
+        .product-card:hover .product-img-wrap img {
+            transform: scale(1.05);
+        }
+
+        .weight-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(17, 17, 19, 0.85);
+            color: var(--text-white);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border-subtle);
+            backdrop-filter: blur(4px);
+        }
+
+        .product-body {
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .product-body h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .product-body p {
+            font-size: 0.9rem;
+            color: var(--text-silver);
+            margin-bottom: 20px;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 14px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .price-tag {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--accent-yellow);
+        }
+
+        /* Bottom Order & Info */
+        .bottom-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-bottom: 80px;
+        }
+
+        .box-panel {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 22px;
+            padding: 32px;
+        }
+
+        .box-panel h3 {
+            font-size: 1.55rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .detail-row {
+            margin: 18px 0;
+        }
+
+        .detail-row span {
+            display: block;
+            font-size: 0.82rem;
+            color: var(--text-silver);
+            margin-bottom: 3px;
+        }
+
+        .detail-row strong, .detail-row a {
+            font-size: 1.15rem;
+            color: var(--text-white);
+            text-decoration: none;
+        }
+
+        .links-bar {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 22px;
+        }
+
+        /* Form */
+        .input-group {
+            margin-bottom: 14px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .field-input {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid var(--border-subtle);
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        .field-input:focus {
+            outline: none;
+            border-color: var(--accent-fire);
+        }
+
+        .order-list-box {
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 14px;
+            margin: 16px 0;
+            font-size: 0.9rem;
+        }
+
+        .fz-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 16px 0;
+            font-size: 0.82rem;
+            color: var(--text-silver);
+        }
+
+        .fz-check input {
+            margin-top: 3px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent-fire);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .fz-check a {
+            color: var(--accent-yellow);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        /* Floating Cart */
+        .sticky-cart {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            background-color: var(--accent-fire);
+            color: #fff;
+            padding: 14px 22px;
+            border-radius: 14px;
+            font-weight: 800;
+            box-shadow: 0 12px 28px rgba(255, 77, 28, 0.45);
+            cursor: pointer;
+            z-index: 90;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0B0B0D;
+            border-top: 1px solid var(--border-subtle);
+            padding: 36px 0;
+            font-size: 0.84rem;
+            color: var(--text-silver);
+        }
+
+        .foot-wrap {
+            display: flex;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .foot-docs {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .foot-docs a {
+            color: var(--text-silver);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        /* Modals */
+        .modal-shade {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.82);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .modal-shade.show {
+            display: flex;
+        }
+
+        .modal-win {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 18px;
+            max-width: 680px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 28px;
+        }
+
+        .modal-x {
+            float: right;
+            background: var(--bg-elevated);
+            color: #fff;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .modal-win h3 {
+            color: var(--accent-yellow);
+            margin-bottom: 14px;
+        }
+
+        .modal-win p, .modal-win li {
+            font-size: 0.9rem;
+            color: #D4D4D8;
+            margin-bottom: 10px;
+        }
+
+        .modal-win ul {
+            padding-left: 20px;
+            margin-bottom: 14px;
+        }
+
+        /* Cookie */
+        .cookie-bar {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            max-width: 400px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            padding: 14px 18px;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            z-index: 95;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            font-size: 0.82rem;
+            color: #D4D4D8;
+        }
+
+        @media (max-width: 860px) {
+            .hero-wrap, .bottom-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+            .nav-meta {
+                display: none;
+            }
+            .cookie-bar {
+                left: 15px;
+                right: 15px;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="marquee-bar">
+        г. Абакан, 1-й м-н (1 этаж) • Открыты 24/7 круглосуточно • Скидка 10% по промокоду «2ГИС»
+    </div>
+
+    <header>
+        <div class="container nav-inner">
+            <a href="#" class="logo">ТОЧКА ДОНЕРА <span class="logo-badge">24/7</span></a>
+            <div class="nav-meta">
+                <span>г. Абакан, 1-й м-н</span>
+                <span class="live-dot">Работаем сейчас</span>
+            </div>
+            <a href="tel:+79509650000" class="btn btn-fire" style="padding: 10px 20px;">Позвонить</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-wrap">
+            <div>
+                <div class="rating-chip">
+                    <span>★ 4.4</span> Рейтинг на 2ГИС • 89 оценок и 57 отзывов
+                </div>
+                <h1>Горячий <em>сочный донер</em> в Абакане 24/7</h1>
+                <p class="hero-lead">Готовим при вас за 7 минут из свежего маринованного мяса с вертела, хрустящих овощей и фирменных соусов. Заезжайте в 1-й микрорайон днём и ночью.</p>
+                <div class="hero-cta">
+                    <a href="#menu" class="btn btn-fire">Выбрать в меню</a>
+                    <a href="#order" class="btn btn-ghost">Оформить предзаказ</a>
+                </div>
+            </div>
+            <div class="hero-media">
+                <img src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=1000&q=85" alt="Сочный донер на гриле">
+                <div class="hero-caption">
+                    <strong>Свежая прожарка на гриле</strong>
+                    <span style="color: var(--accent-yellow); font-weight: 800;">Готовим за 7 мин</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="promo-box">
+            <div>
+                <h2>Скидка 10% при заказе по телефону</h2>
+                <p>Назовите промокод из 2ГИС оператору или впишите в комментарий при оформлении</p>
+            </div>
+            <div class="code-pill">
+                <strong id="promoVal">2ГИС</strong>
+                <button class="btn btn-fire" style="padding: 8px 16px; font-size: 0.85rem;" onclick="copyPromoCode(this)">Скопировать</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="container" id="menu">
+        <div class="section-head">
+            <div>
+                <h2>Меню точки</h2>
+                <p>Добавьте позиции в предзаказ — соберём горячим к вашему приезду</p>
+            </div>
+        </div>
+
+        <div class="cards-grid" id="cardsGrid"></div>
+    </section>
+
+    <section class="container" id="order">
+        <div class="bottom-grid">
+            <div class="box-panel">
+                <h3>Контакты и точка</h3>
+                <p style="color: var(--text-silver); font-size: 0.92rem;">Ждём вас круглосуточно без перерывов и выходных</p>
+
+                <div class="detail-row">
+                    <span>Адрес в Абакане:</span>
+                    <strong>1-й микрорайон, 655001 (1 этаж)</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Режим работы:</span>
+                    <strong style="color: var(--accent-green);">Круглосуточно 24/7</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Телефон для заказа (скидка 10% по коду «2ГИС»):</span>
+                    <a href="tel:+79509650000" style="color: var(--accent-yellow); font-size: 1.35rem; font-weight: 900;">+7‒950‒965‒XX‒XX</a>
+                </div>
+
+                <div class="links-bar">
+                    <a href="https://2gis.ru/abakan/firm/70000001103678087" target="_blank" rel="noopener" class="btn btn-ghost">Карта 2ГИС</a>
+                    <a href="https://t.me/" target="_blank" rel="noopener" class="btn btn-ghost">Telegram</a>
+                    <a href="#" class="btn btn-ghost">Max</a>
+                </div>
+            </div>
+
+            <div class="box-panel">
+                <h3>Быстрый предзаказ</h3>
+                <p style="color: var(--text-silver); font-size: 0.92rem;">Перезвоним за 2 минуты для подтверждения</p>
+
+                <div class="order-list-box" id="orderListBox">
+                    Корзина пока пуста. Выберите блюда в меню выше или просто оставьте номер телефона.
+                </div>
+
+                <form onsubmit="sendOrder(event)">
+                    <div class="input-group">
+                        <label for="inpName">Ваше имя *</label>
+                        <input type="text" id="inpName" class="field-input" placeholder="Алексей" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="inpPhone">Номер телефона *</label>
+                        <input type="tel" id="inpPhone" class="field-input" placeholder="+7 (___) ___-__-__" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="inpComment">Комментарий или промокод</label>
+                        <input type="text" id="inpComment" class="field-input" placeholder="Например: промокод 2ГИС">
+                    </div>
+
+                    <div class="fz-check">
+                        <input type="checkbox" id="consentCheck" onchange="checkConsent()">
+                        <label for="consentCheck">
+                            Я даю <a onclick="showModal('mConsent', true)">согласие на обработку персональных данных</a> согласно ФЗ-152 и принимаю <a onclick="showModal('mPolicy', true)">Политику конфиденциальности</a>.
+                        </label>
+                    </div>
+
+                    <button type="submit" id="sendBtn" class="btn btn-fire" style="width: 100%;" disabled>Отправить заказ</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <button class="sticky-cart" id="stickyCart" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">
+        Заказ: <span id="stCount">0</span> шт. (<span id="stSum">0</span> ₽)
+    </button>
+
+    <footer>
+        <div class="container foot-wrap">
+            <div>
+                <strong style="color: var(--text-white); font-size: 1rem;">Точка по продаже донера</strong>
+                <p style="margin-top: 6px;">г. Абакан, 1-й м-н, 655001 (1 этаж) • Круглосуточно 24/7</p>
+                <p style="margin-top: 4px;">ИП Иванов Иван Иванович • ИНН 000000000000 • ОГРНИП 000000000000000</p>
+            </div>
+            <div class="foot-docs">
+                <a onclick="showModal('mPolicy', true)">Политика конфиденциальности</a>
+                <a onclick="showModal('mConsent', true)">Согласие на обработку персональных данных</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div class="modal-shade" id="mConsent" onclick="if(event.target===this) showModal('mConsent', false)">
+        <div class="modal-win">
+            <button class="modal-x" onclick="showModal('mConsent', false)">×</button>
+            <h3>Согласие на обработку персональных данных</h3>
+            <p>Настоящим я свободно, своей волей и в своем интересе в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных» даю согласие <strong>ИП Иванов Иван Иванович (ИНН 000000000000, ОГРНИП 000000000000000)</strong>, адрес: г. Абакан, 1-й м-н, 655001 (Оператор), на обработку моих персональных данных, указанных при оформлении заказа на сайте.</p>
+            <ul>
+                <li><strong>Перечень данных:</strong> имя, номер телефона, состав заказа и комментарии, технические данные cookie.</li>
+                <li><strong>Цель обработки:</strong> оформление и приготовление заказа, обратная связь с пользователем.</li>
+                <li><strong>Срок и отзыв:</strong> действует до момента его отзыва путем обращения к Оператору по телефону или электронной почте.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="modal-shade" id="mPolicy" onclick="if(event.target===this) showModal('mPolicy', false)">
+        <div class="modal-win">
+            <button class="modal-x" onclick="showModal('mPolicy', false)">×</button>
+            <h3>Политика конфиденциальности</h3>
+            <p><strong>1. Общие положения.</strong> Настоящая политика определяет порядок обработки и защиты персональных данных пользователей сайта, осуществляемой <strong>ИП Иванов Иван Иванович (ИНН 000000000000)</strong> в соответствии с ФЗ-152.</p>
+            <p><strong>2. Цели обработки.</strong> Имя и телефон используются исключительно для подтверждения и выполнения предзаказа в заведении «Точка по продаже донера» (г. Абакан).</p>
+            <p><strong>3. Безопасность.</strong> Оператор не передает персональные данные третьим лицам и обеспечивает их защиту от неправомерного доступа.</p>
+        </div>
+    </div>
+
+    <div class="cookie-bar" id="cookieBar">
+        <span>Мы используем файлы cookie для работы корзины на сайте.</span>
+        <button class="btn btn-fire" style="padding: 7px 14px; font-size: 0.8rem;" onclick="closeCookie()">Принять</button>
+    </div>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                title: "Классический донер с курицей",
+                weight: "380 г",
+                price: 240,
+                img: "https://images.unsplash.com/photo-1662116765994-1e4200c43589?auto=format&fit=crop&w=800&q=85",
+                desc: "Сочное мясо с вертела, свежие огурцы, томаты, пекинская капуста, чесночный и томатный соусы в хрустящем лаваше."
+            },
+            {
+                id: 2,
+                title: "Фирменный донер на углях",
+                weight: "430 г",
+                price: 290,
+                img: "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=800&q=85",
+                desc: "Увеличенная порция мяса с ароматом дымка, маринованный красный лук, свежие овощи, зелень и соус гриль."
+            },
+            {
+                id: 3,
+                title: "Сырный донер в лаваше",
+                weight: "410 г",
+                price: 270,
+                img: "https://images.unsplash.com/photo-1633321702518-7feccafb94d5?auto=format&fit=crop&w=800&q=85",
+                desc: "Нежная курица гриль, расплавленный сыр чеддер, фирменный сырный соус и свежие овощи в золотистом лаваше."
+            },
+            {
+                id: 4,
+                title: "Острый мексиканский донер",
+                weight: "400 г",
+                price: 270,
+                img: "https://images.unsplash.com/photo-1561651823-34feb02250e4?auto=format&fit=crop&w=800&q=85",
+                desc: "Курица с вертела, колечки перца халапеньо, сладкая кукуруза, свежие овощи и острый соус чили."
+            },
+            {
+                id: 5,
+                title: "Донер на тарелке",
+                weight: "520 г",
+                price: 360,
+                img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=85",
+                desc: "Большая порция мяса, хрустящий картофель фри, салат из свежих овощей, два соуса и тёплая пита."
+            },
+            {
+                id: 6,
+                title: "Сытное Комбо 24/7",
+                weight: "650 г",
+                price: 390,
+                img: "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=800&q=85",
+                desc: "Классический донер с курицей, золотистый картофель фри с соусом и прохладительный напиток."
+            }
+        ];
+
+        let cart = {};
+
+        function renderProducts() {
+            const grid = document.getElementById('cardsGrid');
+            grid.innerHTML = products.map(p => `
+                <article class="product-card">
+                    <div class="product-img-wrap">
+                        <img src="${p.img}" alt="${p.title}" loading="lazy">
+                        <span class="weight-badge">${p.weight}</span>
+                    </div>
+                    <div class="product-body">
+                        <div>
+                            <h3>${p.title}</h3>
+                            <p>${p.desc}</p>
+                        </div>
+                        <div class="product-footer">
+                            <span class="price-tag">${p.price} ₽</span>
+                            <button class="btn btn-fire" style="padding: 9px 18px; font-size: 0.88rem;" onclick="addItem(${p.id})">+ В заказ</button>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function addItem(id) {
+            cart[id] = (cart[id] || 0) + 1;
+            updateOrderUI();
+        }
+
+        function removeItem(id) {
+            if (cart[id] > 1) cart[id]--;
+            else delete cart[id];
+            updateOrderUI();
+        }
+
+        function updateOrderUI() {
+            const box = document.getElementById('orderListBox');
+            const sticky = document.getElementById('stickyCart');
+            const ids = Object.keys(cart);
+
+            if (!ids.length) {
+                box.innerHTML = 'Корзина пока пуста. Выберите блюда в меню выше или просто оставьте номер телефона.';
+                sticky.style.display = 'none';
+                return;
+            }
+
+            let count = 0, total = 0;
+            let html = '<strong style="display:block; margin-bottom:8px; color: var(--accent-yellow);">Выбранные блюда:</strong>';
+            ids.forEach(id => {
+                const item = products.find(x => x.id == id);
+                const q = cart[id];
+                const s = item.price * q;
+                count += q;
+                total += s;
+                html += `
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                        <span>${item.title} × ${q}</span>
+                        <span>
+                            <strong>${s} ₽</strong>
+                            <button type="button" onclick="removeItem(${id})" style="background:#2E2E34; color:#fff; border:none; border-radius:6px; padding:2px 8px; margin-left:6px; cursor:pointer;">−</button>
+                        </span>
+                    </div>
+                `;
+            });
+            html += `<div style="border-top:1px solid #2E2E34; padding-top:8px; margin-top:8px; font-weight:800;">Итого: ${total} ₽</div>`;
+            box.innerHTML = html;
+
+            document.getElementById('stCount').textContent = count;
+            document.getElementById('stSum').textContent = total;
+            sticky.style.display = 'flex';
+        }
+
+        function copyPromoCode(btn) {
+            navigator.clipboard.writeText('2ГИС').then(() => {
+                btn.textContent = 'Скопировано!';
+                document.getElementById('inpComment').value = 'Промокод 2ГИС';
+                setTimeout(() => btn.textContent = 'Скопировать', 2000);
+            });
+        }
+
+        function checkConsent() {
+            document.getElementById('sendBtn').disabled = !document.getElementById('consentCheck').checked;
+        }
+
+        function sendOrder(e) {
+            e.preventDefault();
+            const name = document.getElementById('inpName').value;
+            const phone = document.getElementById('inpPhone').value;
+            alert(`Спасибо, ${name}! Предзаказ принят, перезвоним на ${phone} через 2 минуты.`);
+            e.target.reset();
+            cart = {};
+            updateOrderUI();
+            checkConsent();
+        }
+
+        function showModal(id, state) {
+            document.getElementById(id).classList.toggle('show', state);
+        }
+
+        function closeCookie() {
+            localStorage.setItem('ck_ok', '1');
+            document.getElementById('cookieBar').style.display = 'none';
+        }
+
+        if (localStorage.getItem('ck_ok') === '1') {
+            document.getElementById('cookieBar').style.display = 'none';
+        }
+
+        renderProducts();
+    </script>
+</body>
+</html>
