@@ -26,7 +26,6 @@
         }
         .container { max-width: 1160px; margin: 0 auto; padding: 0 18px; }
 
-        /* Header */
         header {
             background: rgba(18, 18, 18, 0.96);
             border-bottom: 1px solid var(--border);
@@ -84,7 +83,6 @@
         .btn-outline { background: transparent; border: 1.5px solid var(--border); color: var(--text); }
         .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
 
-        /* Hero */
         .hero { padding: 48px 0 36px; }
         .hero-grid {
             display: grid;
@@ -132,7 +130,6 @@
             display: block;
         }
 
-        /* Promo */
         .promo-banner {
             background: linear-gradient(90deg, #FF5722, #FF8F00);
             border-radius: 18px;
@@ -167,7 +164,6 @@
             cursor: pointer;
         }
 
-        /* Menu (Pure HTML cards so ALL 7 photos always show on mobile!) */
         .section-title { font-size: 1.9rem; font-weight: 800; margin-bottom: 8px; }
         .section-subtitle { color: var(--muted); margin-bottom: 28px; font-size: 0.98rem; }
         .menu-grid {
@@ -187,7 +183,7 @@
         }
         .menu-card img {
             width: 100%;
-            height: 210px;
+            height: 220px;
             object-fit: cover;
             display: block;
             background: #252528;
@@ -213,14 +209,12 @@
         }
         .price { font-size: 1.3rem; font-weight: 800; color: var(--gold); }
 
-        /* Features */
         .features { background: #161618; padding: 50px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
         .feature-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 22px; }
         .feature-card h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--gold); }
         .feature-card p { font-size: 0.88rem; color: var(--muted); }
 
-        /* Order & Contacts */
         .order-section { padding: 56px 0; }
         .order-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
         .box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 26px; }
@@ -259,7 +253,6 @@
         .checkbox-group input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--accent); flex-shrink: 0; }
         .checkbox-group a { color: var(--gold); text-decoration: underline; cursor: pointer; }
 
-        /* Floating Cart */
         .floating-cart {
             position: fixed;
             bottom: 20px;
@@ -278,13 +271,11 @@
             gap: 8px;
         }
 
-        /* Footer */
         footer { background: #0D0D0F; border-top: 1px solid var(--border); padding: 34px 0; font-size: 0.84rem; color: var(--muted); }
         .footer-grid { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
         .footer-links { display: flex; flex-direction: column; gap: 8px; }
         .footer-links a { color: var(--muted); text-decoration: underline; cursor: pointer; }
 
-        /* Modals */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -321,7 +312,6 @@
         .modal-content p, .modal-content li { font-size: 0.88rem; color: #D5D5DA; margin-bottom: 10px; }
         .modal-content ul { padding-left: 20px; margin-bottom: 12px; }
 
-        /* Cookie Banner (Fixed) */
         .cookie-banner {
             position: fixed;
             bottom: 18px;
@@ -378,6 +368,7 @@
             </div>
         </div>
         <div class="hero-photo-wrap">
+            <!-- 5-е присланное фото: донер на гриле крупным планом -->
             <img src="images/hero.jpg" alt="Фирменный донер на гриле">
         </div>
     </div>
@@ -402,7 +393,7 @@
         <p class="section-subtitle">Добавьте позиции в предзаказ, чтобы забрать без очереди</p>
 
         <div class="menu-grid">
-            <!-- Карточка 1 -->
+            <!-- Карточка 1 (4-е присланное фото: шаурма в бумаге на светлой плитке) -->
             <div class="menu-card">
                 <img src="images/classic.jpg" alt="Классический донер с курицей">
                 <div class="menu-body">
@@ -411,7 +402,7 @@
                             <h3>Классический донер с курицей</h3>
                             <span class="weight-tag">380 г</span>
                         </div>
-                        <p class="menu-desc">Сочное куриное филе с вертела, свежие огурцы, томаты, пекинская капуста, фирменный чесночный и томатный соусы в хрустящем лаваше.</p>
+                        <p class="menu-desc">Сочное обжаренное мясо с вертела, картофель фри, свежие томаты, салат, красный лук и фирменный соус в хрустящей лепешке.</p>
                     </div>
                     <div class="menu-footer">
                         <span class="price">240 ₽</span>
@@ -420,92 +411,92 @@
                 </div>
             </div>
 
-            <!-- Карточка 2 -->
+            <!-- Карточка 2 (1-е присланное фото: гирос-донер в пите с фри и красным луком) -->
             <div class="menu-card">
-                <img src="images/grill.jpg" alt="Фирменный донер на углях">
+                <img src="images/gyros.jpg" alt="Гирос-донер в пите с фри">
                 <div class="menu-body">
                     <div>
                         <div class="menu-top">
-                            <h3>Фирменный донер на углях</h3>
-                            <span class="weight-tag">430 г</span>
+                            <h3>Гирос-донер в пите с фри</h3>
+                            <span class="weight-tag">420 г</span>
                         </div>
-                        <p class="menu-desc">Увеличенная порция мяса с ароматом дымка, маринованный красный лук, свежие овощи, зелень и авторский соус гриль.</p>
-                    </div>
-                    <div class="menu-footer">
-                        <span class="price">290 ₽</span>
-                        <button type="button" class="btn btn-primary" style="padding: 9px 16px;" onclick="addToCart('Фирменный донер на углях', 290)">+ В заказ</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Карточка 3 -->
-            <div class="menu-card">
-                <img src="images/cheese.jpg" alt="Сырный донер в лаваше">
-                <div class="menu-body">
-                    <div>
-                        <div class="menu-top">
-                            <h3>Сырный донер в лаваше</h3>
-                            <span class="weight-tag">410 г</span>
-                        </div>
-                        <p class="menu-desc">Нежное мясо курицы, расплавленный сыр чеддер, сырный соус, свежие томаты и хрустящий салат в золотистом сырном лаваше.</p>
+                        <p class="menu-desc">Пышная греческая пита, рубленое мясо гриль, золотистый картофель фри, кольца красного лука, свежая зелень и белый соус.</p>
                     </div>
                     <div class="menu-footer">
                         <span class="price">270 ₽</span>
-                        <button type="button" class="btn btn-primary" style="padding: 9px 16px;" onclick="addToCart('Сырный донер в лаваше', 270)">+ В заказ</button>
+                        <button type="button" class="btn btn-primary" style="padding: 9px 16px;" onclick="addToCart('Гирос-донер в пите с фри', 270)">+ В заказ</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Карточка 4 -->
+            <!-- Карточка 3 (3-е присланное фото: ролл-донер на деревянной доске) -->
             <div class="menu-card">
-                <img src="images/spicy.jpg" alt="Острый мексиканский донер">
+                <img src="images/wrap.jpg" alt="Фирменный ролл-донер">
                 <div class="menu-body">
                     <div>
                         <div class="menu-top">
-                            <h3>Острый мексиканский донер</h3>
+                            <h3>Фирменный ролл-донер</h3>
                             <span class="weight-tag">400 г</span>
                         </div>
-                        <p class="menu-desc">Курица гриль, острый перчик халапеньо, свежие овощи и пикантный соус чили для любителей поострее.</p>
+                        <p class="menu-desc">Нежное куриное филе в тонком пшеничном лаваше с красной капустой, свежей зеленью, пряностями и сливочно-чесночным соусом.</p>
                     </div>
                     <div class="menu-footer">
-                        <span class="price">270 ₽</span>
-                        <button type="button" class="btn btn-primary" style="padding: 9px 16px;" onclick="addToCart('Острый мексиканский донер', 270)">+ В заказ</button>
+                        <span class="price">260 ₽</span>
+                        <button type="button" class="btn btn-primary" style="padding: 9px 16px;" onclick="addToCart('Фирменный ролл-донер', 260)">+ В заказ</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Карточка 5 -->
+            <!-- Карточка 4 (7-е присланное фото: большой донер на тарелке на темном фоне) -->
             <div class="menu-card">
-                <img src="images/plate.jpg" alt="Донер на тарелке">
+                <img src="images/plate.jpg" alt="Большой донер на тарелке">
                 <div class="menu-body">
                     <div>
                         <div class="menu-top">
-                            <h3>Донер на тарелке</h3>
+                            <h3>Большой донер на тарелке</h3>
                             <span class="weight-tag">520 г</span>
                         </div>
-                        <p class="menu-desc">Большая порция мяса с вертела, хрустящий картофель фри, салат из свежих овощей, два соуса и теплая пита.</p>
+                        <p class="menu-desc">Поджаренный донер со специями на подушке из хрустящего салата, хрустящие крокеты, овощной микс и фирменный соус в пиале.</p>
                     </div>
                     <div class="menu-footer">
                         <span class="price">360 ₽</span>
-                        <button type="button" class="btn btn-primary" style="padding: 9px 16px;" onclick="addToCart('Донер на тарелке', 360)">+ В заказ</button>
+                        <button type="button" class="btn btn-primary" style="padding: 9px 16px;" onclick="addToCart('Большой донер на тарелке', 360)">+ В заказ</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Карточка 6 -->
+            <!-- Карточка 5 (6-е присланное фото: мясо на углях на доске с фри) -->
             <div class="menu-card">
-                <img src="images/combo.jpg" alt="Сытное Комбо 24/7">
+                <img src="images/grill_board.jpg" alt="Мясо на углях с картофелем фри">
                 <div class="menu-body">
                     <div>
                         <div class="menu-top">
-                            <h3>Сытное Комбо 24/7</h3>
-                            <span class="weight-tag">650 г</span>
+                            <h3>Мясо на углях с картофелем фри</h3>
+                            <span class="weight-tag">550 г</span>
                         </div>
-                        <p class="menu-desc">Классический донер с курицей, порция золотистого картофеля фри с соусом и прохладительный напиток на выбор.</p>
+                        <p class="menu-desc">Сочное томленое мясо в глазури гриль, порция картофеля фри с сыром, свежие томаты, маринованные огурчики и соус барбекю.</p>
+                    </div>
+                    <div class="menu-footer">
+                        <span class="price">450 ₽</span>
+                        <button type="button" class="btn btn-primary" style="padding: 9px 16px;" onclick="addToCart('Мясо на углях с картофелем фри', 450)">+ В заказ</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Карточка 6 (2-е присланное фото: бургер с картофелем фри) -->
+            <div class="menu-card">
+                <img src="images/burger_combo.jpg" alt="Комбо Бургер + Картофель фри">
+                <div class="menu-body">
+                    <div>
+                        <div class="menu-top">
+                            <h3>Комбо Бургер + Картофель фри</h3>
+                            <span class="weight-tag">480 г</span>
+                        </div>
+                        <p class="menu-desc">Сочный бургер с рубленой котлетой на гриле, расплавленным сыром, свежими овощами и порцией хрустящего картофеля фри.</p>
                     </div>
                     <div class="menu-footer">
                         <span class="price">390 ₽</span>
-                        <button type="button" class="btn btn-primary" style="padding: 9px 16px;" onclick="addToCart('Сытное Комбо 24/7', 390)">+ В заказ</button>
+                        <button type="button" class="btn btn-primary" style="padding: 9px 16px;" onclick="addToCart('Комбо Бургер + Картофель фри', 390)">+ В заказ</button>
                     </div>
                 </div>
             </div>
@@ -617,7 +608,6 @@
     </div>
 </footer>
 
-<!-- Модальное окно Согласия -->
 <div class="modal-overlay" id="consentModal" onclick="closeModalOnBg(event, 'consentModal')">
     <div class="modal-content">
         <button type="button" class="modal-close" onclick="closeModal('consentModal')">×</button>
@@ -633,7 +623,6 @@
     </div>
 </div>
 
-<!-- Модальное окно Политики -->
 <div class="modal-overlay" id="privacyModal" onclick="closeModalOnBg(event, 'privacyModal')">
     <div class="modal-content">
         <button type="button" class="modal-close" onclick="closeModal('privacyModal')">×</button>
@@ -643,7 +632,6 @@
     </div>
 </div>
 
-<!-- Плашка Cookie -->
 <div class="cookie-banner" id="cookieBar">
     <span>Мы используем файлы cookie для корректной работы сайта.</span>
     <button type="button" class="btn btn-primary" style="padding: 7px 14px; font-size: 0.8rem;" onclick="closeCookie()">Принять</button>
